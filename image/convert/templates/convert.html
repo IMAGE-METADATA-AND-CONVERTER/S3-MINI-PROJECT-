@@ -1,0 +1,42 @@
+{% extends "indexhead.html" %}
+
+{% block content %}
+<h1>convert image </h1>
+<form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+<table border="0" class="table table-striped table-responsive">
+    <tr>
+        <th>Image</th>
+        <td><input type="file" name="f1" class="form-control" required /> </td>
+    </tr>
+    <tr><th>Target Format</th><td><select class="form-control" name="f2" required>
+        <option value="">-select-</option>
+        <option value="0">webp</option>
+        <option value="1">png</option>
+    </select></td></tr>
+  <tr><td colspan="2"><button class="btn btn-sm btn-success mt-1" style="float: right;">CONVERT</button></td></tr>
+    
+</table>
+</form>
+<br/>
+<br/>
+{% if filename != "" %}
+<table border="0" class="table table-striped table-responsive" >
+    
+    <tr><th>ORGINAL IMAGE</th><th>CONVERTED TO {{covert}}</th></tr>
+    <tr>
+        <td><img src="../media/{{orgin}}" width="250px" height="250px"/></td>
+       <td><img src="../media/{{filename}}" width="250px" height="250px"/> </td>
+    </tr>
+    <tr>
+        <th>{{orgin}}</th>
+        <th>{{filename}}</th>
+    </tr>
+    <tr><th colspan="2"><a download="../media/{{filename}}" href="../media/{{filename}}" style="float: right;" class="btn btn-success btn-lg">DOWNLOAD</a></th></tr>
+</table>
+
+
+{% endif %}
+
+
+{% endblock %}
